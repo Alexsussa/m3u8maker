@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-10-09 15:47-0300\n"
-"PO-Revision-Date: 2020-10-09 18:09-0300\n"
+"POT-Creation-Date: 2020-10-09 20:28-0300\n"
+"PO-Revision-Date: 2020-10-09 20:29-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -15,27 +15,27 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: m3u8maker.py\n"
 
-#: m3u8maker.py:22
+#: m3u8maker.py:30
 msgid "FREE CHANNELS"
 msgstr "TV ABERTA"
 
-#: m3u8maker.py:22
+#: m3u8maker.py:30
 msgid "MOVIE CHANNELS"
 msgstr "CANAIS DE FILMES"
 
-#: m3u8maker.py:22
+#: m3u8maker.py:30
 msgid "SPORTS CHANNELS"
 msgstr "CANAIS DE ESPORTES"
 
-#: m3u8maker.py:22
+#: m3u8maker.py:30
 msgid "KID CHANNELS"
 msgstr "CANAIS INFANTIS"
 
-#: m3u8maker.py:22
+#: m3u8maker.py:30
 msgid "VARIETIES"
 msgstr "VARIEDADES"
 
-#: m3u8maker.py:40
+#: m3u8maker.py:49 m3u8maker.py:50
 msgid ""
 "There's a new software version avaible to download.\n"
 "Download it now?"
@@ -43,91 +43,95 @@ msgstr ""
 "Há uma nova versão do software disponível.\n"
 "Baixar agora?"
 
-#: m3u8maker.py:70
+#: m3u8maker.py:81
 msgid "File"
 msgstr "Arquivo"
 
-#: m3u8maker.py:71
+#: m3u8maker.py:82
 msgid "New File"
 msgstr "Novo Arquivo"
 
-#: m3u8maker.py:72
+#: m3u8maker.py:83
 msgid "Open File..."
 msgstr "Abrir Arquivo..."
 
-#: m3u8maker.py:73
+#: m3u8maker.py:84
 msgid "Save"
 msgstr "Salvar"
 
-#: m3u8maker.py:74
+#: m3u8maker.py:85
 msgid "Save As..."
 msgstr "Salvar Como..."
 
-#: m3u8maker.py:76
+#: m3u8maker.py:87
 msgid "Quit"
 msgstr "Sair"
 
-#: m3u8maker.py:79
+#: m3u8maker.py:90
 msgid "Help"
 msgstr "Ajuda"
 
-#: m3u8maker.py:80
+#: m3u8maker.py:91
 msgid "Check updates..."
 msgstr "Checar por atualizações..."
 
-#: m3u8maker.py:82
+#: m3u8maker.py:94
 msgid "About"
 msgstr "Sobre"
 
-#: m3u8maker.py:87 m3u8maker.py:191
+#: m3u8maker.py:99 m3u8maker.py:220
 msgid "Cut"
 msgstr "Cortar"
 
-#: m3u8maker.py:88 m3u8maker.py:192
+#: m3u8maker.py:100 m3u8maker.py:221
 msgid "Copy"
 msgstr "Copiar"
 
-#: m3u8maker.py:89 m3u8maker.py:193
+#: m3u8maker.py:101 m3u8maker.py:222
 msgid "Paste"
 msgstr "Colar"
 
-#: m3u8maker.py:96
+#: m3u8maker.py:108
 msgid "CHANNEL NAME"
 msgstr "NOME DO CANAL"
 
-#: m3u8maker.py:111
+#: m3u8maker.py:126
 msgid "CHANNELS GROUP"
 msgstr "GRUPO DE CANAIS"
 
-#: m3u8maker.py:119
+#: m3u8maker.py:132
 msgid "ADD INFO"
 msgstr "ADICIONAR INFORMAÇÕES"
 
-#: m3u8maker.py:145
+#: m3u8maker.py:173
 msgid "M3U, M3U8 Files"
 msgstr "Arquivos M3U, M3U8"
 
-#: m3u8maker.py:145 m3u8maker.py:167
+#: m3u8maker.py:173 m3u8maker.py:196
 msgid "IPTV List"
 msgstr "Lista IPTV"
 
-#: m3u8maker.py:167
+#: m3u8maker.py:196
 msgid "Save As"
 msgstr "Salvar Como"
 
-#: m3u8maker.py:179
+#: m3u8maker.py:208
 msgid "Warning"
 msgstr "Aviso"
 
-#: m3u8maker.py:179
+#: m3u8maker.py:208
 msgid "Channel Name or URL cannot be empty"
 msgstr "Nome do Canal ou URL não podem estar vazio"
 
-#: m3u8maker.py:210
+#: m3u8maker.py:239
+msgid "License"
+msgstr "Licença"
+
+#: m3u8maker.py:243
 msgid "Developed by:"
 msgstr "Desenvolvido por:"
 
-#: m3u8maker.py:220
+#: m3u8maker.py:253
 msgid "About M3u8Maker"
 msgstr "Sobre o M3u8Maker"
 

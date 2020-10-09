@@ -236,7 +236,7 @@ class M3u8Maker:
         github = Label(popup, text='GitHub', cursor='hand2', fg='blue')
         github.pack(pady=5)
         github.bind('<Button-1>', lambda e: webbrowser.open('https://github.com/Alexsussa/M3u8Maker'))
-        license = Label(popup, text='Licence', cursor='hand2', fg='blue')
+        license = Label(popup, text=_('License'), cursor='hand2', fg='blue')
         license.pack(pady=5)
         license.bind('<Button-1>',
                      lambda e: webbrowser.open('https://github.com/Alexsussa/M3u8Maker/blob/master/LICENSE'))
