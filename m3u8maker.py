@@ -194,7 +194,7 @@ class M3u8Maker:
 
     def saveAs(self, event=None):
         info = self.info.get(1.0, END)
-        saveFileAs = asksaveasfile(mode='w', title=_('Save As'), filetypes=[(_('IPTV List'), '*.m3u *.m3u8')])
+        saveFileAs = asksaveasfile(mode='w', title=_('Save As'), filetypes=[(_('IPTV List'), '*.m3u *.m3u8')], initialdir='~/')
         if saveFileAs:
             saveFileAs.writelines(info)
             saveFileAs.close()
@@ -208,7 +208,7 @@ class M3u8Maker:
         if channel == '' or url == '':
             showerror(title=_('Warning'), message=_('Channel Name or URL cannot be empty'))
         else:
-            line = f'\n#EXTINF:-1 tvg-id="{idTxt}" tvg-logo="{logo}" group-title="{group}", {channel}\n{url}\n'
+            line = f'\n\n#EXTINF:-1 tvg-id="{idTxt}" tvg-logo="{logo}" group-title="{group}", {channel}\n{url}'
             self.info.insert(END, line)
             self.txtID.delete(0, END)
             self.txtLogo.delete(0, END)
