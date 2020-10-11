@@ -145,8 +145,8 @@ class M3u8Maker:
         window.bind('<Control-O>', self.openFile)
         window.bind('<Control-s>', self.save)
         window.bind('<Control-S>', self.save)
-        window.bind('<Control-Shift-p>', self.saveAs)
-        window.bind('<Control-Shift-P>', self.saveAs)
+        window.bind('<Control-Shift-s>', self.saveAs)
+        window.bind('<Control-Shift-S>', self.saveAs)
         window.bind('<Control-q>', self.windowDestroy)
         window.bind('<Control-Q>', self.windowDestroy)
         window.bind('<Control-h>', self.about)
@@ -168,7 +168,7 @@ class M3u8Maker:
 
     def newFile(self, event=None):
         self.info.delete(1.0, END)
-        self.info.insert(INSERT, '#EXTM3U\n\n')
+        self.info.insert(INSERT, '#EXTM3U')
 
     def openFile(self, event=None):
         searchList = askopenfilename(title=_('M3U, M3U8 Files'), filetypes=[(_('IPTV List'), '*.m3u *.m3u8')],
@@ -194,7 +194,7 @@ class M3u8Maker:
 
     def saveAs(self, event=None):
         info = self.info.get(1.0, END)
-        saveFileAs = asksaveasfile(mode='w', title=_('Save As'), filetypes=[(_('IPTV List'), '*.m3u *.m3u8')], initialdir='~/')
+        saveFileAs = asksaveasfile(mode='w', title=_('Save As'), filetypes=[(_('IPTV List'), '*.m3u *.m3u8')], initialdir='~/', defaultextension='*.m3u8')
         if saveFileAs:
             saveFileAs.writelines(info)
             saveFileAs.close()
