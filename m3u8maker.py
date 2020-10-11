@@ -38,6 +38,7 @@ else:
     sys.exit(-1)
 
 global openFileName
+openFileName = False
 
 
 # Checks if there's a new software's version
@@ -49,7 +50,7 @@ def checkUpdates(event=None):
                             message=_("There's a new software version avaible to download.\nDownload it now?"))
         subprocess.call(['notify-send', _("There's a new software version avaible to download.\nDownload it now?")])
         if question == YES:
-            webbrowser.open('https://github.com/Alexsussa/M3u8Maker/releases')
+            webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
         else:
             window.update()
             window.after(1800000, checkUpdates)
@@ -227,7 +228,7 @@ class M3u8Maker:
 
     def about(self, event=None):
         popup = Toplevel()
-        version = Label(popup, text='M3u8Maker v0.1 (beta)', fg='black')
+        version = Label(popup, text='M3u8 Maker v0.1 (beta)', fg='black')
         version.pack(pady=10)
         img = PhotoImage(file='icons/mm_about.png')
         lbImg = Label(popup, image=img)
@@ -235,11 +236,11 @@ class M3u8Maker:
         lbImg.image = img
         github = Label(popup, text='GitHub', cursor='hand2', fg='blue')
         github.pack(pady=5)
-        github.bind('<Button-1>', lambda e: webbrowser.open('https://github.com/Alexsussa/M3u8Maker'))
+        github.bind('<Button-1>', lambda e: webbrowser.open('https://github.com/Alexsussa/m3u8maker'))
         license = Label(popup, text=_('License'), cursor='hand2', fg='blue')
         license.pack(pady=5)
         license.bind('<Button-1>',
-                     lambda e: webbrowser.open('https://github.com/Alexsussa/M3u8Maker/blob/master/LICENSE'))
+                     lambda e: webbrowser.open('https://github.com/Alexsussa/m3u8maker/blob/master/LICENSE'))
         creator = Label(popup, text=_('Developed by:'))
         creator.pack(pady=10)
         name = Label(popup, text='Alex Pinheiro', cursor='hand2', fg='blue')
@@ -250,7 +251,7 @@ class M3u8Maker:
         popup.transient(window)
         popup.geometry('400x350')
         popup.resizable(False, False)
-        popup.title(_('About M3u8Maker'))
+        popup.title(_('About M3u8 Maker'))
 
 
 window = Tk()
