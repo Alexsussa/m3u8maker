@@ -95,7 +95,15 @@ msgstr "Colar"
 msgid "CHANNEL NAME"
 msgstr "NOME DO CANAL"
 
-#: m3u8maker.py:126
+#: m3u8maker.py:115
+msgid "URL CHANNEL"
+msgstr "URL DO CANAL"
+
+#: m3u8maker.py:121
+msgid "LOGO URL"
+msgstr "URL DO LOGO"
+
+#: m3u8maker.py:121
 msgid "CHANNELS GROUP"
 msgstr "GRUPO DE CANAIS"
 

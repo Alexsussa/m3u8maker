@@ -17,7 +17,7 @@ import gettext
 
 __version__ = 0.1
 
-appName = 'M3u8Maker'
+appName = 'm3u8maker'
 dirLocation = os.path.join(os.path.realpath('locale'))
 
 locale.bindtextdomain(appName, dirLocation)
@@ -112,15 +112,15 @@ class M3u8Maker:
                                 selectforeground='white')
         self.txtChannel.pack(side=LEFT, padx=3)
 
-        self.lbUrl = Label(self.c1, text='URL', fg='black')
+        self.lbUrl = Label(self.c1, text=_('URL CHANNEL'), fg='black')
         self.lbUrl.pack(side=LEFT, padx=3)
-        self.txtUrl = Entry(self.c1, bg='white', fg='black', width=25, selectbackground='blue',
+        self.txtUrl = Entry(self.c1, bg='white', fg='black', width=40, selectbackground='blue',
                             selectforeground='white')
         self.txtUrl.pack(side=LEFT, padx=3)
 
-        self.lbLogo = Label(self.c2, text='LOGO URL', fg='black')
+        self.lbLogo = Label(self.c2, text=_('LOGO URL'), fg='black')
         self.lbLogo.pack(side=LEFT, padx=3)
-        self.txtLogo = Entry(self.c2, bg='white', fg='black', width=25, selectbackground='blue',
+        self.txtLogo = Entry(self.c2, bg='white', fg='black', width=30, selectbackground='blue',
                              selectforeground='white')
         self.txtLogo.pack(side=LEFT, padx=3)
 
@@ -246,12 +246,14 @@ class M3u8Maker:
         name = Label(popup, text='Alex Pinheiro', cursor='hand2', fg='blue')
         name.pack()
         name.bind('<Button-1>', lambda e: webbrowser.open('https://t.me/Alexsussa'))
+        aboutlogo = PhotoImage(file='icons/mm_logo.png')
         popup.grab_set()
         popup.focus_force()
         popup.transient(window)
         popup.geometry('400x350')
         popup.resizable(False, False)
         popup.title(_('About M3u8 Maker'))
+        popup.tk.call('wm', 'iconphoto', popup._w, aboutlogo)
 
 
 window = Tk()
