@@ -101,7 +101,7 @@ class M3u8Maker:
         self.menuMouse.add_command(label=_('Copy'))
         self.menuMouse.add_command(label=_('Paste'))
 
-        self.lbID = Label(self.c1, text='ID', fg='black')
+        self.lbID = Label(self.c1, text=_('CHANNEL ID'), fg='black')
         self.lbID.pack(side=LEFT, padx=2)
         self.txtID = Entry(self.c1, width=15, bg='white', fg='black', selectbackground='blue', selectforeground='white')
         self.txtID.pack(side=LEFT, padx=3)
@@ -206,7 +206,7 @@ class M3u8Maker:
         channel = self.txtChannel.get()
         url = self.txtUrl.get()
         if channel == '' or url == '':
-            showerror(title=_('Warning'), message=_('Channel Name or URL cannot be empty'))
+            showerror(title=_('Warning'), message=_('Channel Name and Channel URL cannot be empty'))
         else:
             line = f'\n\n#EXTINF:-1 tvg-id="{idTxt}" tvg-logo="{logo}" group-title="{group}", {channel}\n{url}'
             self.info.insert(END, line)
