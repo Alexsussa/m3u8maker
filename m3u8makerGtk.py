@@ -33,19 +33,6 @@ if not os.path.isfile(pidFile):
 else:
     sys.exit(-1)"""
 
-# Checks if there's a new software's version
-"""def checkUpdates(event=None):
-    #window.unbind('<Enter>')
-    linux_version = urlopen('https://www.dropbox.com/s/orvmo3ltilpodsb/m3u8Maker_Linux_Version.txt?dl=true').read()
-    if float(linux_version) > float(__version__):
-        question = askyesno(title='Status',
-                            message=_("There's a new software version avaible to download.\nDownload it now?"))
-        subprocess.call(['notify-send', _("There's a new software version avaible to download.\nDownload it now?")])
-        if question == YES:
-            webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
-        else:
-            pass"""
-
 global openFileName
 openFileName = False
 
@@ -70,7 +57,10 @@ class M3u8Maker:
         self.chooseListFile = builder.get_object('chooseListFile')
         self.saveListFile = builder.get_object('saveListFile')
         self.winAbout = builder.get_object('winAbout')
+        self.askUpdates = builder.get_object('askUpdates')
+        self.btnLink = builder.get_object('btnLink')
         self.winAbout.connect('response', lambda d, r: d.hide())
+        #self.checkUpdates()
 
     def on_btnAddInfo_clicked(self, button):
         idTxt = self.txtID.get_text()
@@ -155,6 +145,22 @@ class M3u8Maker:
 
     def on_btnAbout_activate(self, button):
         self.winAbout.show()
+
+    # Checks if there's a new software's version
+    def checkUpdates(self):
+        linux_version = urlopen('https://www.dropbox.com/s/orvmo3ltilpodsb/m3u8Maker_Linux_Version.txt?dl=true').read()
+        if float(linux_version) > float(__version__):
+            self.winAbout.show()
+            self.btnLink.show()
+            subprocess.call(['notify-send', _("There's a new software version available to download.\nBaixe agora!")])
+            # webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
+
+    def on_btnCheckUpdates_activate(self, button):
+        self.checkUpdates()
+
+    def on_btnLink_clicked(self, button):
+        Thread(target=webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')).start()
+        self.winAbout.hide()
 
 
 builder = Gtk.Builder()

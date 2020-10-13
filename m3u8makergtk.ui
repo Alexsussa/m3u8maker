@@ -10,9 +10,14 @@
       <pattern>*.m3u8</pattern>
     </patterns>
   </object>
+  <object class="GtkImage" id="idImgUpdate">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-connect</property>
+  </object>
   <object class="GtkTextBuffer" id="txtBuffer"/>
   <object class="GtkWindow" id="m3u8makergtk">
-    <property name="can_focus">False</property>
+    <property name="can_focus">True</property>
     <property name="title" translatable="yes">M3u8 Maker</property>
     <property name="default_width">1100</property>
     <property name="default_height">650</property>
@@ -156,6 +161,46 @@
           </packing>
         </child>
         <child>
+          <object class="GtkScrolledWindow" id="info">
+            <property name="width_request">1000</property>
+            <property name="height_request">480</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkTextView" id="txtViewer">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="buffer">txtBuffer</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">50</property>
+            <property name="y">150</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="listCGroup">
+            <property name="width_request">230</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="active">0</property>
+            <items>
+              <item translatable="yes">FREE CHANNELS</item>
+              <item translatable="yes">MOVIES CHANNELS</item>
+              <item translatable="yes">SPORTS CHANNELS</item>
+              <item translatable="yes">KID CHANNELS</item>
+              <item translatable="yes">VARIETIES</item>
+            </items>
+          </object>
+          <packing>
+            <property name="x">600</property>
+            <property name="y">100</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkMenuBar" id="menu">
             <property name="width_request">1100</property>
             <property name="height_request">0</property>
@@ -247,6 +292,23 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
+                      <object class="GtkImageMenuItem" id="btnCheckUpdates">
+                        <property name="label" translatable="yes">Check Updates</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="image">idImgUpdate</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_btnCheckUpdates_activate" swapped="no"/>
+                        <accelerator key="r" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkImageMenuItem" id="btnAbout">
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
@@ -262,46 +324,6 @@
               </object>
             </child>
           </object>
-        </child>
-        <child>
-          <object class="GtkScrolledWindow" id="info">
-            <property name="width_request">1000</property>
-            <property name="height_request">480</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="shadow_type">in</property>
-            <child>
-              <object class="GtkTextView" id="txtViewer">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="buffer">txtBuffer</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="x">50</property>
-            <property name="y">150</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkComboBoxText" id="listCGroup">
-            <property name="width_request">230</property>
-            <property name="height_request">30</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="active">0</property>
-            <items>
-              <item translatable="yes">FREE CHANNELS</item>
-              <item translatable="yes">MOVIES CHANNELS</item>
-              <item translatable="yes">SPORTS CHANNELS</item>
-              <item translatable="yes">KID CHANNELS</item>
-              <item translatable="yes">VARIETIES</item>
-            </items>
-          </object>
-          <packing>
-            <property name="x">600</property>
-            <property name="y">100</property>
-          </packing>
         </child>
       </object>
     </child>
@@ -521,40 +543,17 @@
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <property name="transient_for">m3u8makergtk</property>
-    <property name="attached_to">m3u8makergtk</property>
     <property name="program_name">M3u8 Maker</property>
     <property name="version">v0.1 (beta)</property>
-    <property name="comments" translatable="yes">Software em versão BETA</property>
+    <property name="copyright" translatable="yes">Alex Pinheiro</property>
+    <property name="comments" translatable="yes">Software in BETA version</property>
     <property name="website">https://github.com/Alexsussa/m3u8maker</property>
     <property name="website_label" translatable="yes">GitHub M3u8 Maker</property>
-    <property name="license" translatable="yes">MIT License
-
-Copyright (c) 2020 Alex Pinheiro
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</property>
-    <property name="authors">Alex Pinheiro</property>
     <property name="documenters">Alex Pinheiro</property>
     <property name="translator_credits" translatable="yes">Alex Pinheiro</property>
     <property name="artists">Alex Pinheiro</property>
     <property name="logo">icons/mm_about.png</property>
-    <property name="wrap_license">True</property>
-    <property name="license_type">custom</property>
+    <property name="license_type">mit-x11</property>
     <child>
       <placeholder/>
     </child>
@@ -575,7 +574,18 @@ SOFTWARE.</property>
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="btnLink">
+            <property name="label" translatable="yes">New Software Version Available</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">half</property>
+            <signal name="clicked" handler="on_btnLink_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
         </child>
       </object>
     </child>
