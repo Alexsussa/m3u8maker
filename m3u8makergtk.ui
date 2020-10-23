@@ -5,9 +5,11 @@
   <object class="GtkFileFilter" id="fileTypes">
     <mime-types>
       <mime-type>*.m3u8</mime-type>
+      <mime-type>*.m3u</mime-type>
     </mime-types>
     <patterns>
       <pattern>*.m3u8</pattern>
+      <pattern>*.m3u</pattern>
     </patterns>
   </object>
   <object class="GtkImage" id="idImgUpdate">
@@ -171,6 +173,7 @@
               <object class="GtkTextView" id="txtViewer">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="wrap_mode">word-char</property>
                 <property name="buffer">txtBuffer</property>
               </object>
             </child>
@@ -414,7 +417,6 @@
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <property name="transient_for">m3u8makergtk</property>
-    <property name="attached_to">m3u8makergtk</property>
     <property name="action">save</property>
     <property name="do_overwrite_confirmation">True</property>
     <property name="filter">fileTypes</property>

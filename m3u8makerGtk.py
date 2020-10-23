@@ -3,9 +3,9 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 from urllib.request import urlopen
-from threading import Thread
+from multiprocessing import Process
 import os
 import sys
 import subprocess
@@ -25,13 +25,13 @@ gettext.bindtextdomain(appName, dirLocation)
 gettext.textdomain(appName)
 _ = gettext.gettext
 
-"""pid = os.getpid()
+pid = os.getpid()
 pidFile = '/tmp/m3u8maker'
 if not os.path.isfile(pidFile):
     os.system(f'touch {pidFile}')
     os.system(f'echo {pid} >> {pidFile}')
 else:
-    sys.exit(-1)"""
+    sys.exit(-1)
 
 global openFileName
 openFileName = False
@@ -60,7 +60,8 @@ class M3u8Maker:
         self.askUpdates = builder.get_object('askUpdates')
         self.btnLink = builder.get_object('btnLink')
         self.winAbout.connect('response', lambda d, r: d.hide())
-        #self.checkUpdates()
+        GObject.threads_init()
+        GObject.idle_add(self.checkUpdates)
 
     def on_btnAddInfo_clicked(self, button):
         idTxt = self.txtID.get_text()
@@ -152,14 +153,14 @@ class M3u8Maker:
         if float(linux_version) > float(__version__):
             self.winAbout.show()
             self.btnLink.show()
-            subprocess.call(['notify-send', _("There's a new software version available to download.\nBaixe agora!")])
+            subprocess.call(['notify-send', _("There's a new software version available to download.\nDownload now!")])
             # webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
 
     def on_btnCheckUpdates_activate(self, button):
-        self.checkUpdates()
+        GObject.idle_add(self.checkUpdates)
 
     def on_btnLink_clicked(self, button):
-        Thread(target=webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')).start()
+        Process(target=webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')).start()
         self.winAbout.hide()
 
 
@@ -171,3 +172,6 @@ window = builder.get_object(appName)
 window.show_all()
 window.connect('destroy', Gtk.main_quit)
 Gtk.main()
+if Gtk.main_quit:
+    pass
+    os.unlink(pidFile)
