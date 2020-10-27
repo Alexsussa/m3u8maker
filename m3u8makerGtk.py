@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GObject
 from urllib.request import urlopen
@@ -121,7 +122,7 @@ class M3u8Maker:
 
     def on_chooseListFile_file_activated(self, button):
         self.on_btnFileChooserOpen_clicked(button)
-        
+
     def on_btnFileChooserCancel_clicked(self, button):
         self.chooseListFile.hide()
 
@@ -151,7 +152,8 @@ class M3u8Maker:
     def checkUpdates(self):
         linux_version = urlopen('https://www.dropbox.com/s/orvmo3ltilpodsb/m3u8Maker_Linux_Version.txt?dl=true').read()
         if float(linux_version) > float(__version__):
-            subprocess.call(['notify-send', _("There's a new software version available to download.\nClick on Help menu and download now!")])
+            subprocess.call(['notify-send', _(
+                "There's a new software version available to download.\nClick on Help menu and download now!")])
             self.btnNewUpdate.set_sensitive(True)
             # webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
 
