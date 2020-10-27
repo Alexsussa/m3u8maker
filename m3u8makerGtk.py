@@ -5,7 +5,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GObject
 from urllib.request import urlopen
-from multiprocessing import Process
+from threading import Thread
 import os
 import sys
 import subprocess
@@ -59,9 +59,9 @@ class M3u8Maker:
         self.winAbout = builder.get_object('winAbout')
         self.askUpdates = builder.get_object('askUpdates')
         self.btnLink = builder.get_object('btnLink')
+        self.btnNewUpdate = builder.get_object('btnNewUpdate')
         self.winAbout.connect('response', lambda d, r: d.hide())
-        GObject.threads_init()
-        GObject.idle_add(self.checkUpdates)
+        Thread(target=self.checkUpdates, daemon=True).start()
 
     def on_btnAddInfo_clicked(self, button):
         idTxt = self.txtID.get_text()
@@ -151,17 +151,15 @@ class M3u8Maker:
     def checkUpdates(self):
         linux_version = urlopen('https://www.dropbox.com/s/orvmo3ltilpodsb/m3u8Maker_Linux_Version.txt?dl=true').read()
         if float(linux_version) > float(__version__):
-            self.winAbout.show()
-            self.btnLink.show()
-            subprocess.call(['notify-send', _("There's a new software version available to download.\nDownload now!")])
+            subprocess.call(['notify-send', _("There's a new software version available to download.\nClick on Help menu and download now!")])
+            self.btnNewUpdate.set_sensitive(True)
             # webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
 
     def on_btnCheckUpdates_activate(self, button):
-        GObject.idle_add(self.checkUpdates)
+        Thread(target=self.checkUpdates, daemon=True).start()
 
-    def on_btnLink_clicked(self, button):
-        Process(target=webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')).start()
-        self.winAbout.hide()
+    def on_newUpdate_activate(self, button):
+        Thread(target=webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases'), daemon=True).start()
 
 
 builder = Gtk.Builder()

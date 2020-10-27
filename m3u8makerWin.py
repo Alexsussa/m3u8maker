@@ -15,7 +15,7 @@ import webbrowser
 import locale
 import gettext
 
-__version__ = 0.1
+__version__ = 0.0
 
 appName = 'm3u8maker'
 dirLocation = os.path.join(os.path.realpath('locale'))
@@ -46,9 +46,9 @@ def checkUpdates(event=None):
     window.unbind('<Enter>')
     linux_version = urlopen('https://www.dropbox.com/s/orvmo3ltilpodsb/m3u8Maker_Linux_Version.txt?dl=true').read()
     if float(linux_version) > float(__version__):
+        subprocess.call(['notify-send', _("There's a new software version avaible to download.\nDownload it now?")])
         question = askyesno(title='Status',
                             message=_("There's a new software version avaible to download.\nDownload it now?"))
-        subprocess.call(['notify-send', _("There's a new software version avaible to download.\nDownload it now?")])
         if question == YES:
             webbrowser.open('https://github.com/Alexsussa/m3u8maker/releases')
         else:
