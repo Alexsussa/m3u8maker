@@ -15,7 +15,7 @@ import webbrowser
 import locale
 import gettext
 
-__version__ = 0.0
+__version__ = 0.1
 
 appName = 'm3u8maker'
 dirLocation = os.path.join(os.path.realpath('locale'))
@@ -209,7 +209,8 @@ class M3u8Maker:
             showerror(title=_('Warning'), message=_('Channel Name and Channel URL cannot be empty'))
         else:
             line = f'\n\n#EXTINF:-1 tvg-id="{idTxt}" tvg-logo="{logo}" group-title="{group}", {channel}\n{url}'
-            self.info.insert(END, line)
+            self.info.tag_configure('warning', foreground='blue')
+            self.info.insert(END, line, 'warning')
             self.txtID.delete(0, END)
             self.txtLogo.delete(0, END)
             self.txtGroup.delete(0, END)
@@ -266,4 +267,5 @@ window.title('M3u8 Maker')
 window.geometry(f'1100x610')
 window.mainloop()
 if window.destroy or window.quit:
+    #pass
     os.unlink(pidFile)
