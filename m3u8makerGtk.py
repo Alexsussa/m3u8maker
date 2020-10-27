@@ -4,7 +4,7 @@
 import gi
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk
 from urllib.request import urlopen
 from threading import Thread
 import os
@@ -74,8 +74,9 @@ class M3u8Maker:
             self.status.set_markup(_('\n\n\nChannel Name and Channel Url cannot be empty.'))
             self.status.show()
         else:
+            end_iter = self.txtBuffer.get_end_iter()
             line = f'\n\n#EXTINF:-1 tvg-id="{idTxt}" tvg-logo="{logo}" group-title="{group}", {channel}\n{url}'
-            self.txtBuffer.insert_at_cursor(line)
+            self.txtBuffer.insert_markup(end_iter, f'<span color="blue">{line}</span>', -1)
             self.txtID.set_text('')
             self.txtLUrl.set_text('')
             self.txtCName.set_text('')
@@ -173,5 +174,5 @@ window.show_all()
 window.connect('destroy', Gtk.main_quit)
 Gtk.main()
 if Gtk.main_quit:
-    pass
+    #pass
     os.unlink(pidFile)
