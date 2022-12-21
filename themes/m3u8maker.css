@@ -6,6 +6,10 @@ QLineEdit {
     height: 22px;
 }
 
+QLineEdit:focus, QTextEdit:focus {
+    border: 1.5px solid #308cc6;
+}
+
 QPushButton {
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
