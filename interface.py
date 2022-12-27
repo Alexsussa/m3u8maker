@@ -5,6 +5,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from urllib.request import urlopen
+from common import Utils
 import os
 import sys
 import subprocess
@@ -32,13 +33,14 @@ if not os.path.isfile(pidFile):
 else:
     sys.exit(-1)"""
 
-global openFileName
-openFileName = False
-
 
 class M3u8Maker(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        self.popup = QMessageBox()
+
+        u = Utils()
 
         groupChannel = [_('FREE CHANNELS'), _('MOVIES CHANNELS'), _('SPORTS CHANNELS'), _('KID CHANNELS'), _('VARIETIES')]
 
@@ -48,10 +50,10 @@ class M3u8Maker(QMainWindow):
 
         # File menu
         self.fileMenu = QMenu(_('File'))
-        self.fileMenu.addAction(QIcon('icons/menubar/new-file.png'), _('New File'), lambda: '', 'Ctrl+N')
-        self.fileMenu.addAction(QIcon('icons/menubar/open-file.png'), _('Open File...'), lambda: '', 'Ctrl+O')
-        self.fileMenu.addAction(QIcon('icons/menubar/save.png'), _('Save'), lambda: '', 'Ctrl+S')
-        self.fileMenu.addAction(QIcon('icons/menubar/save-as.png'), _('Save As...'), lambda: '', 'Ctrl+Shift+S')
+        self.fileMenu.addAction(QIcon('icons/menubar/new-file.png'), _('New File'), lambda: u.newFile(self.infoField), 'Ctrl+N')
+        self.fileMenu.addAction(QIcon('icons/menubar/open-file.png'), _('Open File...'), lambda: u.openFile(self.infoField), 'Ctrl+O')
+        self.fileMenu.addAction(QIcon('icons/menubar/save.png'), _('Save'), lambda: u.saveFile(self.infoField), 'Ctrl+S')
+        self.fileMenu.addAction(QIcon('icons/menubar/save-as.png'), _('Save As...'), lambda: u.saveAs(self.infoField), 'Ctrl+Shift+S')
         self.fileMenu.addSeparator()
         self.fileMenu.addAction(QIcon('icons/menubar/quit.png'), _('Quit'), lambda: sys.exit(self.destroy), 'Ctrl+Q')
         self.mainMenu.addMenu(self.fileMenu)
@@ -98,7 +100,7 @@ class M3u8Maker(QMainWindow):
         self.channelGrouptxt.addItems(groupChannel)
 
         self.btnAddInfo = QPushButton(_('ADD INFO'))
-        #self.btnAddInfo.clicked.activated()
+        self.btnAddInfo.clicked.connect(lambda: u.addInfo(self.channelIdtxt, self.channelNametxt, self.channelUrltxt, self.logoUrltxt, self.channelGrouptxt, self.infoField))
 
         self.infoField = QTextEdit()
         self.infoField.setPlaceholderText(_('All typed informations will be setting here...'))
@@ -123,12 +125,22 @@ class M3u8Maker(QMainWindow):
 
         self.setStyleSheet(open('themes/m3u8maker.css').read())
 
+        # Keyboard shortcuts
+
+        clean_fields = QShortcut('Ctrl+L', self)
+        clean_fields.activated.connect(lambda: u.cleanFields(self.channelIdtxt, self.channelNametxt, self.channelUrltxt, self.logoUrltxt, self.channelGrouptxt, self.infoField))
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    translator = QTranslator()
+    locale_ = QLocale().system().name()
+    library = os.path.abspath('translations')
+    translator.load(f'qt_{locale_}', library)
     win = M3u8Maker()
     win.setWindowTitle('M3u8 Maker')
     win.setWindowIcon(QIcon('icons/mm_logo.png'))
-    win.setMinimumSize(900, 650)
+    win.resize(900, 650)
     win.show()
+    app.installTranslator(translator)
     sys.exit(app.exec_())
