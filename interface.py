@@ -39,6 +39,7 @@ class M3u8Maker(QMainWindow):
         super().__init__()
 
         self.popup = QMessageBox()
+        self.color = QColor
 
         u = Utils()
 
@@ -100,7 +101,7 @@ class M3u8Maker(QMainWindow):
         self.channelGrouptxt.addItems(groupChannel)
 
         self.btnAddInfo = QPushButton(_('ADD INFO'))
-        self.btnAddInfo.clicked.connect(lambda: u.addInfo(self.channelIdtxt, self.channelNametxt, self.channelUrltxt, self.logoUrltxt, self.channelGrouptxt, self.infoField))
+        self.btnAddInfo.clicked.connect(lambda: u.addInfo(self.channelIdtxt, self.channelNametxt, self.channelUrltxt, self.logoUrltxt, self.channelGrouptxt, self.infoField, self.color))
 
         self.infoField = QTextEdit()
         self.infoField.setPlaceholderText(_('All typed informations will be setting here...'))
