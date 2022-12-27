@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import sys
 import os
@@ -81,7 +83,7 @@ class Utils(QMainWindow):
             pass
 
 
-    def addInfo(self, id, name, churl, logourl, group, text_field):
+    def addInfo(self, id, name, churl, logourl, group, text_field, color):
         widgets_list = [id, name, churl, logourl]
 
         formated_text = f'\n\n#EXTINF:-1 tvg-id="{id.text()}" tvg="{logourl.text()}" group-title="{group.currentText()}", {name.text()}\n{churl.text()}'
@@ -93,15 +95,18 @@ class Utils(QMainWindow):
 
             formated_text = f'\n\n#EXTINF:-1 tvg-id="{id.text()}" tvg="{logourl_formated}" group-title="{group.currentText()}", {name.text()}\n{churl_formated}'
 
+            text_field.setTextColor(color('blue'))
             text_field.insertPlainText(formated_text)
+            text_field.setTextColor(color('black'))
 
             for widget in widgets_list:
                 widget.setText('')
                 group.setCurrentIndex(0)
             
         else:
-            
+            text_field.setTextColor(color('blue'))
             text_field.insertPlainText(formated_text)
+            text_field.setTextColor(color('black'))
             
             for widget in widgets_list:
                 widget.setText('')
