@@ -135,7 +135,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     translator = QTranslator()
     locale_ = QLocale().system().name()
-    library = os.path.abspath('translations')
+    library = os.path.abspath('languages')
     translator.load(f'qt_{locale_}', library)
     win = M3u8Maker()
     win.setWindowTitle('M3u8 Maker')
