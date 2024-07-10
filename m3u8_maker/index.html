@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3u8 Maker</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/m3u8maker.css">
+    <link rel="stylesheet" href="assets/css/media.css" media="screen">
+</head>
+<body>
+    <main>
+        <form method="post">
+            <label for="chid">Id do canal</label>
+            <input type="text" name="chid" id="chid" placeholder="ID do canal...">
+
+            <label for="chname">Nome do canal</label>
+            <input type="text" name="chname" id="chname" placeholder="Nome do canal...">
+
+            <label for="churl">Url do canal</label>
+            <input type="text" name="churl" id="churl" placeholder="URL do canal..."><br>
+
+            <label for="logourl">Url do logo</label>
+            <input type="text" name="logourl" id="logourl" placeholder="URL do logo do canal...">
+
+            <label for="chgroup">Grupo de canais</label>
+            <input type="text" name="chgroup" id="chgroup" list="listchannel" placeholder="Grupo de canais...">
+                <datalist id="listchannel">
+                    <option>TV aberta</option>
+                    <option>Canais de filmes</option>
+                    <option>Canais de esportes</option>
+                    <option>Canais infantis</option>
+                    <option>Variedades</option>
+                </datalist>
+
+            <input title="Adicionar todas as informações no campo abaixo" id="addinfo" type="button" value="Adicionar informações">
+
+            <button title="Limpa todos os campos" id="limpar" type="button">
+                <img src="assets/images/limpar.png" alt="Limpar todos os campos" width="10" height="10">
+            </button>
+
+            <a id="download">
+                <button title="Criar um arquivo m3u8 e baixar" id="btnDownload" type="button">
+                    <img src="assets/images/download.png" alt="Criar arquivo m3u8 e baixar" width="10" height="10">
+                </button>
+            </a><br>
+
+            <textarea name="infofield" id="infofield" cols="100" rows="30" placeholder="As informações aparecerão aqui..."></textarea>
+
+            <p>Desenvolvido por &copy;<a href="https://youtube.com/AlexPinheiroSussa" target="_blank">Alex Pinheiro</a></p>
+        </form>
+    </main>
+    <script src="assets/js/m3u8maker.js"></script>
+</body>
+</html>
