@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
     main {
         display: block;
     }
