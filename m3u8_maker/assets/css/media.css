@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-@media screen and (min-width: 769px) and (max-width: 992px) {
+@media screen and (min-width: 600px) and (max-width: 992px) {
     main {
         display: block;
     }
 
     form {
-        width: 70%;
+        width: 50%;
     }
 }
 
