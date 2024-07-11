@@ -38,7 +38,7 @@ label, input[type="text"] {
 }
 
 input[type="button"], button {
-    width: 20%;
+    width: 50%;
     height: 25px;
     margin-bottom: 5px;
 }
